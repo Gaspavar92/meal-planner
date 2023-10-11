@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 # meal-planner
 # meal-planner
 # meal-planner
+# meal-planner
