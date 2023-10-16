@@ -1,42 +1,41 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+header {
+    position: relative;
+    transition: .5s;
+    height: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form {
+    opacity: 0;
+    transition: .5s;
+    transform: translateY(-100%);
+    display: flex;
+    align-items: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.arrow-down {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+    cursor: pointer;
+    transition: .5s;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.expanded {
+    height: 100px;
+    transition: .5s;
 }
 
-.card {
-  padding: 2em;
+.rotate {
+    transform: translate(-50%) rotate(180deg);
 }
 
-.read-the-docs {
-  color: #888;
+.show-form {
+    opacity: 1;
+    transform: translateY(0);
 }

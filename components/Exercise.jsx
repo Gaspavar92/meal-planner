@@ -1,7 +1,11 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import styles from "./styling/Exercise.module.css";
 
 const Exercise = ({muscle, level}) => {
+
+    const [response, setResponse] = useState();
 
     const baseUrl = new URL("https://api.api-ninjas.com/v1/exercises");
     const params = {
@@ -20,13 +24,17 @@ const Exercise = ({muscle, level}) => {
 
     useEffect(() => {
         axios.get(baseUrl, options)
-        .then(response => console.log(response))
+        .then(response => setResponse(response.data))
+        console.log(response)
     }, [muscle, level])
 
-    // if (!muscle || !difficulty) return;
-    return (
-        <div>
+    if (!response) return;
 
+    return (
+        <div className="exercises">
+            {response.map((data) => {
+                return <p>{data.name}</p>
+            })}
         </div>
     )
 };
