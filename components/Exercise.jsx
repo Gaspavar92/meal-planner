@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styles from "./styling/Exercise.module.css"
 
-import styles from "./styling/Exercise.module.css";
 
 const Exercise = ({muscle, level}) => {
 
-    const [response, setResponse] = useState();
+    const [response, setResponse] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const baseUrl = new URL("https://api.api-ninjas.com/v1/exercises");
     const params = {
@@ -23,19 +24,36 @@ const Exercise = ({muscle, level}) => {
     }
 
     useEffect(() => {
-        axios.get(baseUrl, options)
-        .then(response => setResponse(response.data))
-        console.log(response)
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(baseUrl, options);
+                setResponse(response.data);
+            } catch(error) {
+                console.log(error.message)
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData()
     }, [muscle, level])
 
-    if (!response) return;
-
     return (
-        <div className="exercises">
-            {response.map((data) => {
-                return <p>{data.name}</p>
-            })}
-        </div>
+        <>
+            <div className={`${styles.center} ${styles.exercises}`}>
+                {loading ?
+                <p>Loading..</p> :
+                !response.length ?
+                <p>Sorry, no exercise found. Change parameters and try again.</p> :
+                response.map((data, i) => {
+                    return <li key={`exercise-${i}`}>{data.name}</li>
+                })
+                }
+            </div>
+            <div className={styles.dumbbell_image}>
+                <i class="fa-solid fa-dumbbell"></i>
+            </div>
+        </>
     )
 };
 
