@@ -42,8 +42,14 @@ html { box-sizing: border-box;}
     --hover-link: #D6A2E8; /* Light Purple */
   }  
 
+.wrapper {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
 body {
     background-color: var(--dark-background);
+    font-family: 'Rubik', sans-serif;
 }
 
 body, button {
@@ -54,7 +60,9 @@ header {
     position: relative;
     z-index: 2;
     background-color: var(--darker-background);
-    padding: 20px
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .form-section {
@@ -85,7 +93,7 @@ form {
     transition: .5s;
     border: none;
     background-color: transparent;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .expanded {
@@ -105,12 +113,14 @@ form {
 .header-nav {
     display: flex;
     list-style: none;
-    gap: 20px
+    gap: 50px
 }
 
 .header-nav a {
     text-decoration: none;
     color: var(--primary-text);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 21px;
 }
 
 .header-nav a:hover {
@@ -122,23 +132,14 @@ form {
 }
 
 .icon-container:hover .icon {
-    animation: shake .6s;
+    animation: rotate .5s;
 }
 
-@keyframes shake {
+@keyframes rotate {
     0% {
-        transform: translate(0px, 0px);
-    }
-    25% {
-        transform: translate(2px, -2px);
-    }
-    50% {
-        transform: translate(-2px, 2px);
-    }
-    75% {
-        transform: translate(-2px, -2px);
+        transform: rotate(0);
     }
     100% {
-        transform: translate(0px, 0px);
+        transform: rotate(360deg);
     }
 }
