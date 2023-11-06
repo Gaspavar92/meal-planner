@@ -52,9 +52,6 @@ const Exercise = ({muscle, level}) => {
                 <i className={`fa-solid fa-arrow-up ${styles.arrow_up}`}></i>
                 <p>Enter details and start your next fitness journey</p>
             </div>
-            <div className={styles.dumbbell_image}>
-                <i className="fa-solid fa-dumbbell"></i>
-            </div>
         </>
 
         )
@@ -83,18 +80,18 @@ const Exercise = ({muscle, level}) => {
                     <h2>{details.name}</h2>
                 </div>
                 <div className={styles.details}>
+                    {details.difficulty &&
+                    <>
                         <p><span className={styles.bold}>Difficulty: </span>{details.difficulty ?? "N/A"}</p>
                         <p><span className={styles.bold}>Equipement: </span>{details.equipment ?? "N/A"}</p>
                         <p><span className={styles.bold}>Muscle: </span>{details.muscle ?? "N/A"}</p>
                         <p><span className={styles.bold}>Type: </span>{details.type  ?? "N/A"}</p>
                         <p className={styles.description}><span className={styles.bold}>Description: </span>{details.instructions ?? "N/A"}</p>
+                    </>
+                    }
                 </div>
             </div>
         </div>
-
-            <div className={styles.dumbbell_image}>
-                <i class="fa-solid fa-dumbbell"></i>
-            </div>
         </>
     )
 };

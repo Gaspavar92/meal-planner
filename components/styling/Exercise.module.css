@@ -5,24 +5,6 @@
     transform: translate(-50%, -50%);
 }
 
-.dumbbell_image {
-    font-size: 200px;
-    opacity: .2;
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    animation: float 3s infinite ease-in-out alternate;
-}
-
-@keyframes float {
-    0% {
-        transform: skew(20deg, 340deg) translateY(-10px);
-    }
-    100% {
-        transform: skew(20deg, 340deg) translateY(10px);
-    }
-}
-
 .arrow_up {
     font-size: 50px;
     opacity: .2;
@@ -60,19 +42,27 @@
 .exercise {
     cursor: pointer;
     width: fit-content;
-    transition: .1s;
+    transition: .2s;
 }
 
 .exercise:hover {
     text-decoration: underline;
-    color: var(--regular-link)
+    color: var(--regular-link);
+    transform: scale(1.1);
 }
 
 .exercise_page {
     display: flex;
     width: 100%;
-    height: calc(100vh - 40px - 25px - 21px);
+    /* height: calc(100vh - 40px - 25px - 21px); */
     align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    border: 1px solid var(--primary-accent);
+    padding: 25px;
 }
 
 .exercises {
@@ -89,5 +79,5 @@
 
 .description {
     overflow: auto;
-    height: 200px;
+    max-height: 200px;
 }
