@@ -76,7 +76,7 @@ header {
     border-bottom: 1px solid var(--primary-accent);
 }
 
-form {
+.main-form {
     opacity: 0;
     transition: .5s;
     transform: translateY(-100%);
@@ -142,4 +142,86 @@ form {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.personal {
+    height: 300px;
+    position: absolute;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.personal > li {
+    list-style: none;
+    font-size: 30px;
+    transition: .5s;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+}
+
+.personal li a {
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+}
+
+.personal-text {
+    opacity: 0;
+    transition: .5s;
+    transform: translateX(200%);
+    position: absolute;
+    font-family: 'Permanent Marker', cursive;
+    pointer-events: none;
+}
+
+.personal li:hover .personal-text {
+    opacity: 1;
+    transform: translateX(10%);
+    pointer-events: auto;
+}
+
+.personal li:hover {
+    transform: scale(1.2);
+}
+
+.personal:has(li:hover) li:not(:hover) {
+    filter: blur(5px);
+    transform: scale(.8);
+}
+
+.personal li::after {
+    background-image: linear-gradient(to right, var(--primary-accent), var(--secondary-accent));
+    height: 5px;
+    content: '';
+    transition: .5s;
+    display: block;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    margin-top: 10px;
+}
+
+.personal li:hover::after {
+    width: 600%;
+}
+
+.button {
+    padding: 5px 40px;
+    background: linear-gradient(to bottom, var(--primary-accent), var(--secondary-accent));
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: background .5s ease;
+    border: 1px solid transparent;
+}
+
+.button:hover {
+    background: linear-gradient(to right, var(--secondary-accent), var(--primary-accent));
+    border: 1px solid white;
 }
