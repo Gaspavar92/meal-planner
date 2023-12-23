@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "./styling/Exercise.module.css"
+import YouTubeSearch from "./YouTubeSearch";
 
 
 const Exercise = ({muscle, level}) => {
@@ -8,6 +9,9 @@ const Exercise = ({muscle, level}) => {
     const [response, setResponse] = useState([]);
     const [loading, setLoading] = useState(false);
     const [details, setDetails] = useState([]);
+    const [placeholder, setPlaceholder] = useState(`Click to find out more`);
+
+    console.dir(placeholder)
 
     const baseUrl = new URL("https://api.api-ninjas.com/v1/exercises");
     const params = {
@@ -28,6 +32,8 @@ const Exercise = ({muscle, level}) => {
         const fetchData = async () => {
             if (muscle && level) {
                 try {
+                    setPlaceholder("Click to find out more");
+                    setDetails([]);
                     setLoading(true);
                     const response = await axios.get(baseUrl, options);
                     setResponse(response.data);
@@ -44,6 +50,7 @@ const Exercise = ({muscle, level}) => {
     const showDetails = (e) => {
         const index = e.target.dataset.index;
         setDetails(response[index]);
+        setPlaceholder("");
     };
 
     if (!muscle && !level) return (
@@ -53,7 +60,6 @@ const Exercise = ({muscle, level}) => {
                 <p>Enter details and start your next fitness journey</p>
             </div>
         </>
-
         )
 
     return (
@@ -80,7 +86,8 @@ const Exercise = ({muscle, level}) => {
                     <h2>{details.name}</h2>
                 </div>
                 <div className={styles.details}>
-                    {details.difficulty &&
+                    {placeholder ?
+                    <div><i className="fa-solid fa-arrow-left"></i> {placeholder}</div> :
                     <>
                         <p><span className={styles.bold}>Difficulty: </span>{details.difficulty ?? "N/A"}</p>
                         <p><span className={styles.bold}>Equipement: </span>{details.equipment ?? "N/A"}</p>
@@ -89,6 +96,7 @@ const Exercise = ({muscle, level}) => {
                         <p className={styles.description}><span className={styles.bold}>Description: </span>{details.instructions ?? "N/A"}</p>
                     </>
                     }
+                            <YouTubeSearch exercise={details.name}/>
                 </div>
             </div>
         </div>
