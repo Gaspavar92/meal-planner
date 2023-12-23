@@ -1,0 +1,50 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.youtube_button {
+    background-color: #FF0000;
+    border: 2px solid #FF0000;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    padding: 10px;
+    width: 200px;
+}
+
+.youtube {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.youtube:hover .youtube_button {
+    width: 50px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    transform: translateX(-60px);
+}
+
+.youtube_text {
+    opacity: 0;
+    transition: .3s;
+    transform: translateX(0px);
+    position: absolute;
+    height: 100%;
+    text-align: center;
+    padding: 10px 40px;
+    border-radius: 0px 10px 10px 0px;
+    z-index: 0;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid #FF0000;
+    border-left: transparent;
+}
+
+.youtube:hover .youtube_text {
+    opacity: 1;
+    transform: translateX(20px);
+}
